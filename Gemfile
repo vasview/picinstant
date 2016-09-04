@@ -47,5 +47,7 @@ group :development do
   gem 'bootstrap-sass'
 
   gem 'devise'
+
+  gem 'paperclip'
 end
 
