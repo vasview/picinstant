@@ -1,2 +1,33 @@
-<h1>Photos#index</h1>
-<p>Find me in app/views/photos/index.html.erb</p>
+<h2>All my photos</h2>
+<p><%= link_to 'New photo', new_photo_path, class: 'btn btn-primary'%></p>
+
+<table class="table table-striped">
+	<tr>
+		<th>Название</th>
+		<th>Фото</th>
+		<th>Описание</th>
+		<th>Действия<th>
+	</tr>
+
+	<% @photos.each do |photo| %>
+		<tr>
+			
+			<% if photo.title.nil? %>
+				<td>Без названия</td>
+			<% else %> 
+				<td><%= photo.title %></td>
+			<% end %>
+			<td><%= image_tag photo.image.url(:small) %></td>
+			<% if photo.description.nil? %>
+				<td>---</td>
+			<% else %>
+				<td><%= photo.description %></td>
+			<% end %>	
+			<td>
+				<%= link_to 'Просмотр', photo_path(photo) %>
+				<%= link_to 'Изменить', edit_photo_path(photo) %>
+				<%= link_to 'Удалить', photo_path(photo), method: :delete, data: {confirm: 'Вы точно хотите удалить?'} %>
+			</td>
+		</tr>	
+	<% end %>
+</table>

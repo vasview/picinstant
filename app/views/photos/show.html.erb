@@ -1,2 +1,8 @@
-<h1>Photos#show</h1>
-<p>Find me in app/views/photos/show.html.erb</p>
+<h1><%= @photo.title %></h1>
+<div class="">
+	<%= image_tag @photo.image.url(:large) %>
+</div>
+
+<div class="">
+	<%= @photo.description %>
+</div>
