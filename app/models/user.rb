@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 			uniqueness: true
 
 	has_many :photos
+	has_many :comments
 
 	has_many :followships
 	has_many :followers, :through => :followships

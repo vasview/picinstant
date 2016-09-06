@@ -1,5 +1,7 @@
 class Photo < ActiveRecord::Base
-	belongs_to :users
+	belongs_to :user
+
+	has_many :comments
 
 	has_attached_file :image,
 				styles: {large: '400x400>', medium: '200x200>', small: '120x120>'}

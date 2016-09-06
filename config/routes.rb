@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
-  resources :photos
+  resources :photos do
+    resources :comments
+  end
 
   resources :followships, only: [:create, :destroy]
 

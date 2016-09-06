@@ -1,0 +1,16 @@
+<li>
+  <p>
+    <strong><%= comment.user.nickname %></strong> написал:
+    
+  </p>
+
+  <p>
+    <strong><%= comment.body %></strong>
+    
+  </p>
+  <% if current_user %>
+  <p>
+    <%= link_to 'Delete', [comment.photo, comment], method: :delete %>
+  </p>
+  <% end %>
+</li>

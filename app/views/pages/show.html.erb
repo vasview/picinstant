@@ -1,2 +1,12 @@
 <h1>Pages#show</h1>
 <p>Find me in app/views/pages/show.html.erb</p>
+
+<h2><%= link_to 'Comments', '#', id: 'comments-link' %></h2>
+<section id="comment-section">
+  <ul id="comments">
+    <%= render @photo.comments %>
+  </ul>
+
+  <h2>Add a comment:</h2>
+  <%= render 'comments/form' %>
+</section>  
