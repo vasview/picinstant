@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :photos
 
+  resources :followships, only: [:create, :destroy]
+
   get 'pages/show'
 
   devise_for :users

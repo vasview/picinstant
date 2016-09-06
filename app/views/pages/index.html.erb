@@ -1,2 +1,18 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<h2> All Posts </h2>
+<div class="">
+	<% for user in @users %>
+		<% if !user.photos.empty? %>
+			<div>
+				<% for photo in user.photos %>
+					<%= photo.title %>
+					<%= image_tag photo.image.url(:medium) %> </br>
+					by <%= user.nickname %> </br>
+				<% end %>		
+			</div>
+					<%= link_to "Follow", followships_path(follower_id: user), method: :post %>
+					<%= link_to "Dismiss", followship_path(:id), method: :delete %>
+				
+				
+		<% end %>
+	<% end %>
+</div>
