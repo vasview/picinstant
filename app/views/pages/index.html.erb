@@ -10,7 +10,9 @@
 					<%= link_to "Full view", photo_path(photo) %>
 				<% end %>		
 			</div>
+				<% if current_user.followships.in?(follower_id: user.id) %>
 					<%= link_to "Follow", followships_path(follower_id: user), method: :post %>
+				<% end %>
 					<%= link_to "Dismiss", followship_path(:id), method: :delete %>
 								
 		<% end %>

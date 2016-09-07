@@ -8,9 +8,11 @@
     <strong><%= comment.body %></strong>
     
   </p>
-  <% if current_user %>
-  <p>
-    <%= link_to 'Delete', [comment.photo, comment], method: :delete %>
-  </p>
+ <% if user_signed_in? && comment.in?(current_user.comments) %>
+  	
+	  <p>
+	    <%= link_to 'Delete', [comment.photo, comment], method: :delete %>
+	  </p>
+	
   <% end %>
 </li>
