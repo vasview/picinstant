@@ -12,9 +12,10 @@ class User < ActiveRecord::Base
 
 	has_many :photos
 	has_many :comments
+	has_many :likes
 
 	has_many :followships
 	has_many :followers, :through => :followships
-	has_many :backward_followships, :class_name => "Followship", :foreign_key => "follower_id"
-	has_many :backward_followers, :through => :backward_followships, :source => :user
+	has_many :back_followships, :class_name => "Followship", :foreign_key => "follower_id"
+	has_many :back_followers, :through => :back_followships, :source => :user
 end

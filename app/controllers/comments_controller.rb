@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-		def new
+	def new
 		@comment = Comment.new		
 	end
 
@@ -11,9 +11,7 @@ class CommentsController < ApplicationController
 		@photo = Photo.find(params[:photo_id])
 		@comment = @photo.comments.build(comment_params)
 		 if @comment.save
-		
-
-			redirect_to root_path
+			redirect_to photo_path(@photo)
 		else 
 			flash[:error] = "can't save!"
 		end
@@ -26,7 +24,7 @@ class CommentsController < ApplicationController
 	    @comment = Comment.find(params[:id])
 	    @comment.destroy
 
-	   	redirect_to root_path
+	   	redirect_to photo_path(@photo)
 	   
 	  end
 

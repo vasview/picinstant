@@ -1,0 +1,19 @@
+<h2>I follow </h2>
+<ul>
+	<% for followship in current_user.followships %>
+		<li>
+			<%= followship.follower.nickname %>
+			<%= followship.id %>
+			<%= link_to "Remove", followship, method: :delete %>
+		</li>
+	<% end %>
+</ul>
+
+<h2> I'm followed </h2>
+<ul>
+	<% for back_followship in current_user.back_followships %>
+		<li>
+			<%= back_followship.user.nickname %>
+		</li>
+	<% end %>
+</ul>

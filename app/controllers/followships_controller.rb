@@ -1,5 +1,10 @@
 class FollowshipsController < ApplicationController
 
+	def index
+		@folowships = current_user.followships
+		
+	end
+
 	def create
 		@followship = current_user.followships.build(follower_id: params[:follower_id])
 		if @followship.save
@@ -12,9 +17,9 @@ class FollowshipsController < ApplicationController
 	end
 
 	def destroy
-		@followship = current_user.followships.find(:id)
+		@followship = current_user.followships.find(params[:id])
 		@followship.destroy
 		flash[:notice] = "Unsubscribed from following"
-		redirect_to root_url
+		redirect_to followships_path
 	end
 end

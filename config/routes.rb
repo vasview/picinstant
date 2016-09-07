@@ -4,9 +4,10 @@ Rails.application.routes.draw do
 
   resources :photos do
     resources :comments
+    resources :likes
   end
 
-  resources :followships, only: [:create, :destroy]
+  resources :followships, only: [:index, :create, :destroy]
 
   get 'pages/show'
 

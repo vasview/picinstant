@@ -9,7 +9,7 @@
 		<th>Действия<th>
 	</tr>
 
-	<% @photos.each do |photo| %>
+	<% current_user.photos.each do |photo| %>
 		<tr>
 			
 			<% if photo.title.nil? %>
