@@ -1,9 +1,16 @@
 class PagesController < ApplicationController
   def index
   	@users = User.all
+    
   end
 
   def show
-  	@photo = Photo.find(params[:id])
+  	@user = User.find(params[:id])
+  end
+
+  private
+
+  def page_params
+  	params.require(:pages).permit(:id, :user_id)
   end
 end

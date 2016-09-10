@@ -2,14 +2,18 @@
 <div class="">
 	<%= image_tag @photo.image.url(:large) %>
 </div>
-<% if current_user.id != @photo.user_id %>
-	<% if @photo.likes.find_by(user_id: current_user.id) %>
+<% if @photo.user_id != current_user.id %>
+	<% if @like.present? %>
 		<div>
-			You liked this picture.
+			<%= link_to photo_like_path(@photo, @like), method: :delete do %>
+			    <span class="glyphicon glyphicon-heart" %></span> <span class="liked_it">Liked</span>
+            <% end %>
 		</div>
 	<% else %>
 		<div>
-			<%= link_to "Like", photo_likes_path(@photo), method: :post %>
+			<%= link_to photo_likes_path(@photo, @like), method: :post do %>
+			    <span class="glyphicon glyphicon-heart-empty" %></span> <span class="like_it">Like</span>
+            <% end %>
 		</div>
 	<% end %>
 <% end %>

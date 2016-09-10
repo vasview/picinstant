@@ -1,12 +1,27 @@
-<h1>Pages#show</h1>
-<p>Find me in app/views/pages/show.html.erb</p>
+<h1>All pictures by <%= @user.nickname %></h1>
 
-<h2><%= link_to 'Comments', '#', id: 'comments-link' %></h2>
-<section id="comment-section">
-  <ul id="comments">
-    <%= render @photo.comments %>
-  </ul>
+<table class="table table-striped">
+		<tr>
+			<th>Title</th>
+			<th>Photo</th>
+			<th>Description</th>
+		</tr>
 
-  <h2>Add a comment:</h2>
-  <%= render 'comments/form' %>
-</section>  
+		<% @user.photos.each do |photo| %>
+			<tr>
+				
+				<% if photo.title.nil? %>
+					<td>No title</td>
+				<% else %> 
+					<td><%= photo.title %></td>
+				<% end %>
+				<td><%= image_tag photo.image.url(:small) %></td>
+				<% if photo.description.nil? %>
+					<td>---</td>
+				<% else %>
+					<td><%= photo.description %></td>
+				<% end %>	
+			
+			</tr>	
+		<% end %>
+	</table>

@@ -1,33 +1,38 @@
 <h2>All my photos</h2>
-<p><%= link_to 'New photo', new_photo_path, class: 'btn btn-primary'%></p>
 
-<table class="table table-striped">
-	<tr>
-		<th>Название</th>
-		<th>Фото</th>
-		<th>Описание</th>
-		<th>Действия<th>
-	</tr>
+ 
+	<p><%= link_to 'New photo', new_photo_path, class: 'btn btn-primary'%></p>
 
-	<% current_user.photos.each do |photo| %>
+
+	<table class="table table-striped">
 		<tr>
-			
-			<% if photo.title.nil? %>
-				<td>Без названия</td>
-			<% else %> 
-				<td><%= photo.title %></td>
-			<% end %>
-			<td><%= image_tag photo.image.url(:small) %></td>
-			<% if photo.description.nil? %>
-				<td>---</td>
-			<% else %>
-				<td><%= photo.description %></td>
-			<% end %>	
-			<td>
-				<%= link_to 'Просмотр', photo_path(photo) %>
-				<%= link_to 'Изменить', edit_photo_path(photo) %>
-				<%= link_to 'Удалить', photo_path(photo), method: :delete, data: {confirm: 'Вы точно хотите удалить?'} %>
-			</td>
-		</tr>	
-	<% end %>
-</table>
+			<th>Title</th>
+			<th>Photo</th>
+			<th>Description</th>
+			<th>Action<th>
+		</tr>
+
+		<% current_user.photos.each do |photo| %>
+			<tr>
+				
+				<% if photo.title.nil? %>
+					<td>No title</td>
+				<% else %> 
+					<td><%= photo.title %></td>
+				<% end %>
+				<td><%= image_tag photo.image.url(:small) %></td>
+				<% if photo.description.nil? %>
+					<td>---</td>
+				<% else %>
+					<td><%= photo.description %></td>
+				<% end %>	
+				<td>
+					<%= link_to 'View', photo_path(photo) %>
+					<%= link_to 'Edit', edit_photo_path(photo) %>
+					<%= link_to 'Delete', photo_path(photo), method: :delete, data: {confirm: 'Are you sure you that you want to delete this photo?'} %>
+				</td>
+			</tr>	
+		<% end %>
+	</table>
+
+

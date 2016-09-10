@@ -1,10 +1,13 @@
 class PhotosController < ApplicationController
   def index
   	@photos = Photo.all
+  	
   end
 
   def show
   	@photo = Photo.find(params[:id])
+    @like = @photo.likes.find_by(user_id: current_user.id)
+
   end
 
   def new
@@ -30,8 +33,10 @@ class PhotosController < ApplicationController
   	@photo = Photo.find(params[:id])
 
   	if @photo.update(photo_params)
+      flash[:success] = "Photo was successfully created!"
   		redirect_to photos_path
   	else
+      flash[:danger] = "There was a probmem with updating your."
   		render 'edit'
   	end
   end

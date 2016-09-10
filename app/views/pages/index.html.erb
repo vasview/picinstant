@@ -6,23 +6,31 @@
 				<% for photo in user.photos %>
 					<%= photo.title %>
 					<%= image_tag photo.image.url(:medium) %> </br>
-					by <%= user.nickname %> </br>
+					by <%= link_to user.nickname, pages_show_path(id: user.id) %> </br>
+					<% if user_signed_in? %>
+						<%= link_to "Full view", photo_path(photo) %>
+					<% end %>
+
 					<% if photo.likes_count.blank? %>
 						<div>
 							No likes yet...
 						</div>
 					<% else %>
-						<%= photo.likes_count %> people like it. </br>
+						<div>
+							<%= photo.likes_count %> people <span class="glyphicon glyphicon-thumbs-up"> </span> it.
+						</div>
 					<% end %>
-					<% if user_signed_in? %>
-						<%= link_to "Full view", photo_path(photo) %>
-					<% end %>
+					
 				<% end %>		
 			</div>
 				<% if user_signed_in? %>
-					<%= link_to "Follow", followships_path(follower_id: user), method: :post %>
-					<%= link_to "Dismiss", followship_path(:id), method: :delete %>
+					<%= link_to followships_path(follower_id: user), method: :post do %>
+						<span class="glyphicon glyphicon-eye-open" %></span> <span class="follow_it">Follow</span>
+					<% end %>
+					<%= link_to followship_path(id: user.followships.find_by(user_id: current_user.id).id), method: :delete do %>
+						<span class="glyphicon glyphicon-eye-close" %></span> <span class="stop_follow">Stop Follow</span>
+					<% end %>
 				<% end %>				
 		<% end %>
 	<% end %>
-</div>
+</div>.id

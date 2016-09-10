@@ -22,4 +22,10 @@ class FollowshipsController < ApplicationController
 		flash[:notice] = "Unsubscribed from following"
 		redirect_to followships_path
 	end
+
+	private
+
+	def followship_params
+		params.require(:followship).permit(:id, :follower_id, :user_id)
+	end
 end
