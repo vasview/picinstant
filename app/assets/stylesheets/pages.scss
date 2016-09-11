@@ -1,3 +1,37 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.caption {
+	text-align: center;
+}
+
+.stop_follow {
+	text-align: rght;
+	color: red;
+	padding-left: 5px;
+}
+
+.glyphicon.glyphicon-eye-close {
+    font-size: 18px;
+    padding-left: 20px;
+    color: red;
+}
+
+
+.follow_it {
+	text-align: right;
+	color: navy;
+	padding-left: 5px;
+}
+
+.glyphicon.glyphicon-eye-open {
+    font-size: 18px;
+    padding-left: 20px;
+    color: navy;
+}
+
+.idx_likes {
+	display: inline;
+	padding-left: 20px
+}

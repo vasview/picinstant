@@ -16,6 +16,7 @@
  *= require bootstrap
  */
 @import "bootstrap-sprockets";
-@import "bootstrap";
+
 @import "bootwatchflaty";
-@import "pagination"
+@import "pagination";
+@import "bootstrap";
