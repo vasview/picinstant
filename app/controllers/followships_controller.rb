@@ -1,7 +1,8 @@
 class FollowshipsController < ApplicationController
 
 	def index
-		@folowships = current_user.followships
+		@followships = current_user.followships
+		@back_followships = current_user.back_followships
 		
 	end
 

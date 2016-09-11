@@ -53,5 +53,7 @@ group :development do
   gem 'devise'
 
   gem 'paperclip'
+
+  gem 'will_paginate'
 end
 

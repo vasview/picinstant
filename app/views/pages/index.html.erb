@@ -6,7 +6,30 @@
 				<% for photo in user.photos %>
 					<%= photo.title %>
 					<%= image_tag photo.image.url(:medium) %> </br>
-					by <%= link_to user.nickname, pages_show_path(id: user.id) %> </br>
+					<span> by <%= link_to user.nickname, pages_show_path(id: user.id) %>  </span>
+					<span>
+					<% if user_signed_in? && (user != current_user) %>
+						<% if @followships.present? %>
+							<% followship = @followships.find_by(follower_id: user.id) %>
+							<% if followship.present?%>
+								<%= link_to followship_path(followship), method: :delete do %>
+									<span class="glyphicon glyphicon-eye-close" %></span> <span class="stop_follow">Stop Follow</span>
+								<% end %>
+									
+							<% else %>
+								<%= link_to followships_path(follower_id: user), method: :post do %>
+									<span class="glyphicon glyphicon-eye-open" %></span> <span class="follow_it">Follow</span>
+								<% end %>	
+							<% end %>
+							
+						<% else %>
+							<%= link_to followships_path(follower_id: user), method: :post do %>
+								<span class="glyphicon glyphicon-eye-open" %></span> <span class="follow_it">Follow</span>
+							<% end %>
+						<% end %>
+					<% end %>
+					</span> </br>
+
 					<% if user_signed_in? %>
 						<%= link_to "Full view", photo_path(photo) %>
 					<% end %>
@@ -20,17 +43,8 @@
 							<%= photo.likes_count %> people <span class="glyphicon glyphicon-thumbs-up"> </span> it.
 						</div>
 					<% end %>
-					
 				<% end %>		
 			</div>
-				<% if user_signed_in? %>
-					<%= link_to followships_path(follower_id: user), method: :post do %>
-						<span class="glyphicon glyphicon-eye-open" %></span> <span class="follow_it">Follow</span>
-					<% end %>
-					<%= link_to followship_path(id: user.followships.find_by(user_id: current_user.id).id), method: :delete do %>
-						<span class="glyphicon glyphicon-eye-close" %></span> <span class="stop_follow">Stop Follow</span>
-					<% end %>
-				<% end %>				
 		<% end %>
 	<% end %>
-</div>.id
+</div>
