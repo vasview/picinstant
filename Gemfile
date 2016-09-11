@@ -55,5 +55,7 @@ group :development do
   gem 'paperclip'
 
   gem 'will_paginate'
+
+  gem 'faker'
 end
 

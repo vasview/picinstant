@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, :except => [:index]
+  
   def index
-    @photos = Photo.paginate(:page => params[:page], :per_page => 4)
+    @photos = Photo.paginate(:page => params[:page], :per_page => 6)
     @photo_total = @photos.count
     
   	@users = User.all
